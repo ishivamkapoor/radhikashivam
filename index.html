@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Happy Anniversary, My Love!</title>
+    <!-- Tailwind CSS for modern utility styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts for elegant cursive and base typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            font-family: 'Inter', sans-serif;
+            background-color: #0b0202;
+            overflow: hidden; /* Disables page scrolling entirely */
+            height: 100%;
+            width: 100%;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+        .cursive {
+            font-family: 'Dancing Script', cursive;
+        }
+        /* Custom Elastic Screen Transition Mechanics */
+        .layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1.5rem;
+            padding-bottom: 6rem; /* High padding clearance for fixed bottom footer */
+            z-index: 10;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .layer.active {
+            display: flex;
+            opacity: 1;
+            transform: scale(1);
+        }
+        #layer-1 {
+            background-image: linear-gradient(rgba(11, 2, 2, 0.82), rgba(11, 2, 2, 0.88)), 
+            url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200');
+            /* UPDATE PICTURE: Cover Photo link above */
+            background-size: cover;
+            background-position: center;
+        }
+        #layer-2, #layer-3 {
+            background-image: linear-gradient(rgba(15, 3, 3, 0.96), rgba(15, 3, 3, 0.96));
+        }
+        .card-deck {
+            position: relative;
+            width: 320px;
+            height: 420px;
+            max-width: 88vw;
+            max-height: 58vh;
+            margin: 0 auto;
+        }
+        .swipe-card {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #150606;
+            border: 1px solid rgba(239, 68, 68, 0.25);
+            border-radius: 1.5rem;
+            padding: 1.25rem;
+            box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.85);
+            touch-action: none; /* Disables standard browser page bounce on touches */
+            user-select: none;
+            -webkit-user-select: none;
+            will-change: transform, opacity;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            box-sizing: border-box;
+        }
+        /* Cascading Heart Particles Animation */
+        .falling-heart {
+            position: absolute;
+            top: -5vh;
+            pointer-events: none;
+            animation: fallDown linear forwards;
+            z-index: 1;
+        }
+        @keyframes fallDown {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.65; }
+            90% { opacity: 0.65; }
+            100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Ultra Smooth Love Letter Reveal States */
+        #secret-note {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        #secret-note.reveal-active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #vault-game {
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+    </style>
+</head>
+<body class="text-gray-100 antialiased selection:bg-red-900">
+
+    <!-- CASCADING FALLING HEARTS BACKGROUND -->
+    <div id="hearts-container" class="absolute inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+    <!-- LAYER 1: HERO DISPLAY & REAL-TIME TIMER -->
+    <section id="layer-1" class="layer active text-center">
+        <div class="max-w-xl px-4">
+            <h1 class="cursive text-5xl md:text-7xl mb-2 text-red-500 drop-shadow-xl">Happy Anniversary!</h1>
+            <p class="text-sm md:text-base font-light text-gray-300 mb-6">Every single day since September 7th has been a treasured gift.</p>
+            
+            <div class="grid grid-cols-4 gap-2 max-w-sm mx-auto mb-8 bg-black/50 p-4 rounded-2xl border border-red-950/60 backdrop-blur-sm shadow-inner">
+                <div class="p-1"><span id="days" class="block text-xl md:text-3xl font-semibold text-red-500">00</span><span class="text-[9px] uppercase text-gray-400">Days</span></div>
+                <div class="p-1"><span id="hours" class="block text-xl md:text-3xl font-semibold text-red-500">00</span><span class="text-[9px] uppercase text-gray-400">Hrs</span></div>
+                <div class="p-1"><span id="minutes" class="block text-xl md:text-3xl font-semibold text-red-500">00</span><span class="text-[9px] uppercase text-gray-400">Min</span></div>
+                <div class="p-1"><span id="seconds" class="block text-xl md:text-3xl font-semibold text-red-500">00</span><span class="text-[9px] uppercase text-gray-400">Sec</span></div>
+            </div>
+
+            <button onclick="nextLayer(2)" class="bg-red-700 hover:bg-red-600 text-white font-medium text-sm px-6 py-3 rounded-full shadow-lg shadow-red-950/80 transition duration-300">
+                Unlock Our Memories Key 🔑
+            </button>
+        </div>
+    </section>
+
+    <!-- LAYER 2: INTERACTIVE SWIPE-CARD TIMELINE -->
+    <section id="layer-2" class="layer">
+        <h2 class="cursive text-3xl md:text-5xl text-center text-red-500 mb-1">Our Core Milestones</h2>
+        <p class="text-[11px] text-gray-400 mb-4 text-center">Drag / Swipe cards away, or tap bottom arrows to flip through ➔</p>
+        
+        <div class="card-deck">
+            
+            <!-- Card 5 (Bottom of Deck Stack) -->
+            <div class="swipe-card" data-card="5">
+                <div class="w-full">
+                    <!-- UPDATE PICTURE: Milestone 05 link below -->
+                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 04</span>
+                    <h3 class="text-base font-bold text-gray-100 mb-0.5">Our First Car</h3>
+                    <p class="text-[11px] text-gray-400 leading-normal">Our very own set of shared keys. Commemorating our personal growth, adventurous road trips, and all the wide open roads ahead of us.</p>
+                </div>
+                <div class="flex justify-between text-[11px] font-semibold text-red-500/60 pt-2 border-t border-red-950/30 w-full mt-2">
+                    <button onclick="forceFling(this, -1); event.stopPropagation();" class="hover:text-red-400">← Swipe Left</button>
+                    <button onclick="forceFling(this, 1); event.stopPropagation();" class="hover:text-red-400">Swipe Right →</button>
+                </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="swipe-card" data-card="4">
+                <div class="w-full">
+                    <!-- UPDATE PICTURE: Milestone 04 link below -->
+                    <img src="https://images.unsplash.com/photo-1507504038482-7621c5c2490a?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 03</span>
+                    <h3 class="text-base font-bold text-gray-100 mb-0.5">The Reunion</h3>
+                    <p class="text-[11px] text-gray-400 leading-normal">Rushing right back into each other's arms. Distance proved absolutely nothing because it only made our hearts grow fonder and stronger.</p>
+                </div>
+                <div class="flex justify-between text-[11px] font-semibold text-red-500/60 pt-2 border-t border-red-950/30 w-full mt-2">
+                    <button onclick="forceFling(this, -1); event.stopPropagation();" class="hover:text-red-400">← Swipe Left</button>
+                    <button onclick="forceFling(this, 1); event.stopPropagation();" class="hover:text-red-400">Swipe Right →</button>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="swipe-card" data-card="3">
+                <div class="w-full">
+                    <!-- UPDATE PICTURE: Milestone 03 link below -->
+                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 02</span>
+                    <h3 class="text-base font-bold text-gray-100 mb-0.5">The Farewell</h3>
+                    <p class="text-[11px] text-gray-400 leading-normal">The emotional time I had to head back to my home country, leaving you behind. It was painful to wave goodbye, but our love kept us closely anchored.</p>
+                </div>
+                <div class="flex justify-between text-[11px] font-semibold text-red-500/60 pt-2 border-t border-red-950/30 w-full mt-2">
+                    <button onclick="forceFling(this, -1); event.stopPropagation();" class="hover:text-red-400">← Swipe Left</button>
+                    <button onclick="forceFling(this, 1); event.stopPropagation();" class="hover:text-red-400">Swipe Right →</button>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="swipe-card" data-card="2">
+                <div class="w-full">
+                    <!-- UPDATE PICTURE: Milestone 02 link below -->
+                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 01</span>
+                    <h3 class="text-base font-bold text-gray-100 mb-0.5">First Date Together</h3>
+                    <p class="text-[11px] text-gray-400 leading-normal">Shared fits of laughter, long hours of deep conversation, and that unmistakable, beautiful feeling that this was the start of something rare.</p>
+                </div>
+                <div class="flex justify-between text-[11px] font-semibold text-red-500/60 pt-2 border-t border-red-950/30 w-full mt-2">
+                    <button onclick="forceFling(this, -1); event.stopPropagation();" class="hover:text-red-400">← Swipe Left</button>
+                    <button onclick="forceFling(this, 1); event.stopPropagation();" class="hover:text-red-400">Swipe Right →</button>
+                </div>
+            </div>
+
+            <!-- Card 1 (Top of Deck Stack) -->
+            <div class="swipe-card" data-card="1">
+                <div class="w-full">
+                    <!-- UPDATE PICTURE: Milestone 01 link below -->
+                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 00</span>
+                    <h3 class="text-base font-bold text-gray-100 mb-0.5">First Meet</h3>
+                    <p class="text-[11px] text-gray-400 leading-normal">September 7th. The monumental day we met for the very first time. The moment my universe shifted coordinates for the better.</p>
+                </div>
+                <div class="flex justify-between text-[11px] font-semibold text-red-500/60 pt-2 border-t border-red-950/30 w-full mt-2">
+                    <button onclick="forceFling(this, -1); event.stopPropagation();" class="hover:text-red-400">← Swipe Left</button>
+                    <button onclick="forceFling(this, 1); event.stopPropagation();" class="hover:text-red-400">Swipe Right →</button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- LAYER 3: TRIVIA CRYPT & LOVE NOTE -->
+    <section id="layer-3" class="layer">
+        <div class="w-full max-w-sm px-4">
+            
+            <!-- CODE TRIVIA BOX -->
+            <div id="vault-game" class="bg-black/80 border border-red-950/80 p-6 rounded-2xl backdrop-blur-md shadow-2xl text-center">
+                <div class="text-4xl mb-3">🔒</div>
+                <h3 class="text-lg font-semibold mb-2 text-red-400">The Vault is Locked</h3>
+                <p class="text-xs text-gray-400 mb-4">To read your special anniversary note, answer this question: What month did we have our first meet?</p>
+                
+                <input type="text" id="vault-input" placeholder="Enter month name..." class="w-full bg-stone-900 border border-red-950/80 rounded-xl px-4 py-2 text-center text-white focus:outline-none focus:border-red-600 mb-3 text-xs">
+                <button onclick="checkVaultCode()" class="w-full bg-red-800 hover:bg-red-700 text-white text-xs font-semibold py-2.5 rounded-xl transition duration-200">Unlock Note</button>
+                <p id="vault-error" class="text-red-500 text-[11px] mt-2 hidden">That's not the right month! Try again, my love. ❤️</p>
+            </div>
+
+            <!-- THE UNLOCKED NOTE -->
+            <div id="secret-note" class="hidden bg-stone-950/95 border border-red-900/40 p-5 md:p-6 rounded-2xl text-left shadow-2xl max-h-[65vh] overflow-y-auto">
+                <h3 class="cursive text-3xl text-red-500 mb-3">My Dearest Fiancé,</h3>
+                <p class="text-gray-300 text-xs leading-relaxed mb-3">
+                    Reaching every single one of these milestones alongside you has shown me what love truly means. From the beautiful jitters of our first meet on September 7th to keeping our faith alive through long distance over borders, you have been my constant.
+                </p>
+                <p class="text-gray-300 text-xs leading-relaxed mb-4">
+                    Thank you for sticking by my side, sharing small wins like our first car, and continuously building a real home with me. I love you, and I cannot wait to officially marry you.
+                </p>
+                <p class="cursive text-lg text-right text-red-400">- Your Forever Love</p>
+                
+                <button onclick="resetApp()" class="mt-4 text-[10px] text-gray-500 hover:text-red-400 underline block text-center w-full mx-auto">Replay Journey ↺</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FLOATING FIXED BOTTOM FOOTER BAR -->
+    <footer class="fixed bottom-0 left-0 w-full py-4 text-center text-gray-500 text-[10px] bg-black/70 border-t border-red-950/30 backdrop-blur-md z-30 pointer-events-none">
+        Forever & Always | Handcrafted with ❤️ for My Fiancé
+    </footer>
+
+    <!-- INTERACTIVE APP CONTROLLERS -->
+    <script>
+        // 1. CHRONOLOGICAL TIMER LOGIC
+        const anniversaryYear = 2023; // <-- CHANGE THIS VALUE TO THE CALENDAR YEAR YOU MET
+        const anniversaryDate = new Date(anniversaryYear, 8, 7, 0, 0); // Month index 8 is September
+
+        function updateCounter() {
+            const now = new Date();
+            const difference = now - anniversaryDate;
+
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+        }
+        setInterval(updateCounter, 1000);
+        updateCounter();
+
+        // 2. STAGE PANELS VISUAL TRANSITIONS (Elastic Spring Layout Scale-fades)
+        function nextLayer(layerId) {
+            const activeLayer = document.querySelector('.layer.active');
+            if (activeLayer) {
+                activeLayer.classList.remove('active');
+                setTimeout(() => {
+                    activeLayer.style.display = 'none';
+                    renderNewLayer(layerId);
+                }, 400); // Gives time for spring out animation to finish scaling down
+            } else {
+                renderNewLayer(layerId);
+            }
+        }
+
+        function renderNewLayer(layerId) {
+            const target = document.getElementById(`layer-${layerId}`);
+            target.style.display = 'flex';
+            target.offsetHeight; // Forces internal layout reflow engine check
+            target.classList.add('active');
+            if(layerId === 2) setupPointerDeck();
+        }
+
+        // 3. CODE CRYPT & SMOOTH FLOATING REVEAL 
+        function checkVaultCode() {
+            const input = document.getElementById('vault-input').value.trim().toLowerCase();
+            const errorElement = document.getElementById('vault-error');
+            const gameBox = document.getElementById('vault-game');
+            const noteBox = document.getElementById('secret-note');
+
+            if (input === 'september') {
+                errorElement.classList.add('hidden');
+                
+                // Fade and push out vault puzzle container smoothly
+                gameBox.style.opacity = '0';
+                gameBox.style.transform = 'scale(0.9) translateY(-10px)';
+                
+                setTimeout(() => {
+                    gameBox.classList.add('hidden');
+                    noteBox.classList.remove('hidden');
+                    
+                    // Force framework reflow sync, then float letter smoothly onto grid view
+                    noteBox.offsetHeight;
+                    noteBox.classList.add('reveal-active');
+                }, 400);
+            } else {
+                errorElement.classList.remove('hidden');
+            }
+        }
+
+        // 4. CASCADING FALLING HEARTS ANIMATOR
+        function initFallingHearts() {
+            const container = document.getElementById('hearts-container');
+            const symbols = ['❤️', '✨', '🌹', '💖', '💕'];
+            
+            setInterval(() => {
+                const particle = document.createElement('div');
+                particle.classList.add('falling-heart');
+                particle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                particle.style.fontSize = (Math.random() * 14 + 11) + 'px';
+                
+                container.appendChild(particle);
+                setTimeout(() => { particle.remove(); }, 7000);
+            }, 450);
+        }
+        initFallingHearts();
+
+        // 5. SECURE UNIFIED POINTER TRACKING DECK
+        let activeCardsCount = 5;
+        function setupPointerDeck() {
+            const cards = document.querySelectorAll('.swipe-card');
+            cards.forEach(card => {
+                let startX = 0;
+                let startY = 0;
+                let isTracking = false;
+
+                card.addEventListener('pointerdown', (e) => {
+                    isTracking = true;
+                    startX = e.clientX;
+                    startY = e.clientY;
+                    card.style.transition = 'none';
+                    card.setPointerCapture(e.pointerId);
+                });
+
+                card.addEventListener('pointermove', (e) => {
+                    if (!isTracking) return;
+                    const deltaX = e.clientX - startX;
+                    card.style.transform = `translateX(${deltaX}px) rotate(${deltaX * 0.07}deg)`;
+                });
+
+                card.addEventListener('pointerup', (e) => {
+                    if (!isTracking) return;
+                    isTracking = false;
+                    card.releasePointerCapture(e.pointerId);
+                    
+                    const deltaX = e.clientX - startX;
+                    const swipeThreshold = 100;
+
+                    card.style.transition = 'transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease';
+
+                    if (deltaX > swipeThreshold) {
+                        dismissCard(card, 1);
+                    } else if (deltaX < -swipeThreshold) {
+                        dismissCard(card, -1);
+                    } else {
+                        card.style.transform = 'translateX(0px) rotate(0deg)';
+                    }
+                });
+            });
+        }
+
+        function forceFling(buttonElement, direction) {
+            const currentCard = buttonElement.closest('.swipe-card');
+            currentCard.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.4s ease';
+            dismissCard(currentCard, direction);
+        }
+
+        function dismissCard(cardElement, direction) {
+            cardElement.style.transform = `translateX(${direction * 140}vw) rotate(${direction * 35}deg)`;
+            cardElement.style.opacity = '0';
+            setTimeout(() => {
+                cardElement.style.display = 'none';
+                activeCardsCount--;
+                if (activeCardsCount <= 0) {
+                    setTimeout(() => { nextLayer(3); }, 250);
+                }
+            }, 350);
+        }
+
+        // 6. SYSTEM APPLICATION RESET (Completely Refreshes Tracking Node Vectors)
+        function resetApp() {
+            activeCardsCount = 5;
+            
+            // Clean out hidden states from letter reveal animations completely
+            const gameBox = document.getElementById('vault-game');
+            const noteBox = document.getElementById('secret-note');
+            
+            gameBox.style.opacity = '1';
+            gameBox.style.transform = 'none';
+            gameBox.classList.remove('hidden');
+            
+            noteBox.classList.remove('reveal-active');
+            noteBox.classList.add('hidden');
+            document.getElementById('vault-input').value = '';
+            
+            // Re-inflate and position card layouts back in central grid coordinates
+            document.querySelectorAll('.swipe-card').forEach(card => {
+                card.style.display = 'flex';
+                card.style.transform = 'none';
+                card.style.opacity = '1';
+                card.style.transition = 'none';
+            });
+            
+            nextLayer(1);
+        }
+    </script>
+</body>
+</html>
