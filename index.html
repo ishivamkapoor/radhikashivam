@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Happy Anniversary, My Love!</title>
-    <!-- Tailwind CSS for modern utility styling -->
+    <!-- Tailwind CSS for sleek utility styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts for elegant cursive and base typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght=700&family=Inter:wght=300;400;600&display=swap" rel="stylesheet">
     <style>
         body, html {
             font-family: 'Inter', sans-serif;
             background-color: #0b0202;
-            overflow: hidden; /* Disables page scrolling entirely */
+            overflow: hidden; 
             height: 100%;
             width: 100%;
             position: relative;
@@ -22,7 +22,6 @@
         .cursive {
             font-family: 'Dancing Script', cursive;
         }
-        /* Custom Elastic Screen Transition Mechanics */
         .layer {
             position: absolute;
             top: 0;
@@ -34,7 +33,7 @@
             justify-content: center;
             align-items: center;
             padding: 1.5rem;
-            padding-bottom: 6rem; /* High padding clearance for fixed bottom footer */
+            padding-bottom: 6rem; 
             z-index: 10;
             box-sizing: border-box;
             opacity: 0;
@@ -47,11 +46,9 @@
             transform: scale(1);
         }
         #layer-1 {
-            background-image: linear-gradient(rgba(11, 2, 2, 0.82), rgba(11, 2, 2, 0.88)), 
-            url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=1200');
-            /* UPDATE PICTURE: Cover Photo link above */
             background-size: cover;
             background-position: center;
+            transition: background-image 0.5s ease-in-out;
         }
         #layer-2, #layer-3 {
             background-image: linear-gradient(rgba(15, 3, 3, 0.96), rgba(15, 3, 3, 0.96));
@@ -73,7 +70,7 @@
             border-radius: 1.5rem;
             padding: 1.25rem;
             box-shadow: 0 25px 30px -10px rgba(0, 0, 0, 0.85);
-            touch-action: none; /* Disables standard browser page bounce on touches */
+            touch-action: none; 
             user-select: none;
             -webkit-user-select: none;
             will-change: transform, opacity;
@@ -82,7 +79,13 @@
             justify-content: space-between;
             box-sizing: border-box;
         }
-        /* Cascading Heart Particles Animation */
+        .swipe-card img {
+            width: 100%;
+            height: clamp(160px, 45vw, 220px);
+            object-fit: contain;
+            object-position: center;
+            background: #0b0202;
+        }
         .falling-heart {
             position: absolute;
             top: -5vh;
@@ -96,8 +99,6 @@
             90% { opacity: 0.65; }
             100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
         }
-        
-        /* Ultra Smooth Love Letter Reveal States */
         #secret-note {
             opacity: 0;
             transform: translateY(20px);
@@ -146,9 +147,8 @@
             <!-- Card 5 (Bottom of Deck Stack) -->
             <div class="swipe-card" data-card="5">
                 <div class="w-full">
-                    <!-- UPDATE PICTURE: Milestone 05 link below -->
-                    <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
-                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 04</span>
+                    <img id="img-milestone-5" src="" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2 bg-stone-950">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 05</span>
                     <h3 class="text-base font-bold text-gray-100 mb-0.5">Our First Car</h3>
                     <p class="text-[11px] text-gray-400 leading-normal">Our very own set of shared keys. Commemorating our personal growth, adventurous road trips, and all the wide open roads ahead of us.</p>
                 </div>
@@ -161,9 +161,8 @@
             <!-- Card 4 -->
             <div class="swipe-card" data-card="4">
                 <div class="w-full">
-                    <!-- UPDATE PICTURE: Milestone 04 link below -->
-                    <img src="https://images.unsplash.com/photo-1507504038482-7621c5c2490a?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
-                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 03</span>
+                    <img id="img-milestone-4" src="" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2 bg-stone-950">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 04</span>
                     <h3 class="text-base font-bold text-gray-100 mb-0.5">The Reunion</h3>
                     <p class="text-[11px] text-gray-400 leading-normal">Rushing right back into each other's arms. Distance proved absolutely nothing because it only made our hearts grow fonder and stronger.</p>
                 </div>
@@ -176,9 +175,8 @@
             <!-- Card 3 -->
             <div class="swipe-card" data-card="3">
                 <div class="w-full">
-                    <!-- UPDATE PICTURE: Milestone 03 link below -->
-                    <img src="https://images.unsplash.com/photo-1542038784456-1ea8e935640e?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
-                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 02</span>
+                    <img id="img-milestone-3" src="" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2 bg-stone-950">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 03</span>
                     <h3 class="text-base font-bold text-gray-100 mb-0.5">The Farewell</h3>
                     <p class="text-[11px] text-gray-400 leading-normal">The emotional time I had to head back to my home country, leaving you behind. It was painful to wave goodbye, but our love kept us closely anchored.</p>
                 </div>
@@ -191,9 +189,8 @@
             <!-- Card 2 -->
             <div class="swipe-card" data-card="2">
                 <div class="w-full">
-                    <!-- UPDATE PICTURE: Milestone 02 link below -->
-                    <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
-                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 01</span>
+                    <img id="img-milestone-2" src="" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2 bg-stone-950">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 02</span>
                     <h3 class="text-base font-bold text-gray-100 mb-0.5">First Date Together</h3>
                     <p class="text-[11px] text-gray-400 leading-normal">Shared fits of laughter, long hours of deep conversation, and that unmistakable, beautiful feeling that this was the start of something rare.</p>
                 </div>
@@ -206,9 +203,8 @@
             <!-- Card 1 (Top of Deck Stack) -->
             <div class="swipe-card" data-card="1">
                 <div class="w-full">
-                    <!-- UPDATE PICTURE: Milestone 01 link below -->
-                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=400" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2">
-                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 00</span>
+                    <img id="img-milestone-1" src="" class="w-full h-40 object-cover rounded-xl border border-red-950/40 pointer-events-none mb-2 bg-stone-950">
+                    <span class="text-[9px] uppercase font-semibold text-red-500 tracking-wider">Milestone 01</span>
                     <h3 class="text-base font-bold text-gray-100 mb-0.5">First Meet</h3>
                     <p class="text-[11px] text-gray-400 leading-normal">September 7th. The monumental day we met for the very first time. The moment my universe shifted coordinates for the better.</p>
                 </div>
@@ -260,9 +256,57 @@
 
     <!-- INTERACTIVE APP CONTROLLERS -->
     <script>
+        // --- DYNAMIC RUNTIME PRESIGNED IMAGE BINDER ---
+        const PRESIGNED_URLS = {
+            firstMeet: "https://github.com/user-attachments/assets/2efd4a8d-1239-495f-b4e4-78dca98cd01d", 
+            firstDate: "https://github.com/user-attachments/assets/a12824f5-88a0-42b6-9524-044dec825ce9", 
+            farewell:  "https://github.com/user-attachments/assets/3098ef67-fc54-4b40-822c-229ba3e3ba82", 
+            reunion:   "https://github.com/user-attachments/assets/928e5b71-5761-47fc-947f-ea6278541a1f", 
+            firstCar:  "https://github.com/user-attachments/assets/e1ddba28-9fe7-42e2-9fc6-40afe828dab6"  
+        };
+
+        function loadImage(url, onLoad, onError) {
+            const image = new Image();
+            image.onload = () => onLoad(image.src);
+            image.onerror = onError;
+            image.src = url;
+        }
+
+        function runtimeLoadImages() {
+            const imageBindings = [
+                ['img-milestone-1', PRESIGNED_URLS.firstMeet],
+                ['img-milestone-2', PRESIGNED_URLS.firstDate],
+                ['img-milestone-3', PRESIGNED_URLS.farewell],
+                ['img-milestone-4', PRESIGNED_URLS.reunion],
+                ['img-milestone-5', PRESIGNED_URLS.firstCar]
+            ];
+
+            imageBindings.forEach(([elementId, url]) => {
+                loadImage(url, (loadedUrl) => {
+                    document.getElementById(elementId).src = loadedUrl;
+                    if (elementId === 'img-milestone-1') {
+                        document.getElementById('layer-1').style.backgroundImage = `linear-gradient(rgba(11, 2, 2, 0.82), rgba(11, 2, 2, 0.88)), url('${loadedUrl}')`;
+                    }
+                }, () => {
+                    if (elementId === 'img-milestone-1') {
+                        console.warn(`First Meet image unavailable. Using a verified fallback image: ${PRESIGNED_URLS.firstDate}`);
+                        loadImage(PRESIGNED_URLS.firstDate, (fallbackUrl) => {
+                            document.getElementById(elementId).src = fallbackUrl;
+                            document.getElementById('layer-1').style.backgroundImage = `linear-gradient(rgba(11, 2, 2, 0.82), rgba(11, 2, 2, 0.88)), url('${fallbackUrl}')`;
+                        }, () => {
+                            console.error(`Unable to load milestone image fallback: ${PRESIGNED_URLS.firstDate}`);
+                        });
+                    } else {
+                        console.error(`Unable to load milestone image: ${url}`);
+                    }
+                });
+            });
+        }
+        window.addEventListener('DOMContentLoaded', runtimeLoadImages);
+
         // 1. CHRONOLOGICAL TIMER LOGIC
-        const anniversaryYear = 2023; // <-- CHANGE THIS VALUE TO THE CALENDAR YEAR YOU MET
-        const anniversaryDate = new Date(anniversaryYear, 8, 7, 0, 0); // Month index 8 is September
+        const anniversaryYear = 2023; 
+        const anniversaryDate = new Date(anniversaryYear, 8, 7, 0, 0); 
 
         function updateCounter() {
             const now = new Date();
@@ -281,7 +325,7 @@
         setInterval(updateCounter, 1000);
         updateCounter();
 
-        // 2. STAGE PANELS VISUAL TRANSITIONS (Elastic Spring Layout Scale-fades)
+        // 2. STAGE PANELS VISUAL TRANSITIONS
         function nextLayer(layerId) {
             const activeLayer = document.querySelector('.layer.active');
             if (activeLayer) {
@@ -289,7 +333,7 @@
                 setTimeout(() => {
                     activeLayer.style.display = 'none';
                     renderNewLayer(layerId);
-                }, 400); // Gives time for spring out animation to finish scaling down
+                }, 400); 
             } else {
                 renderNewLayer(layerId);
             }
@@ -298,7 +342,7 @@
         function renderNewLayer(layerId) {
             const target = document.getElementById(`layer-${layerId}`);
             target.style.display = 'flex';
-            target.offsetHeight; // Forces internal layout reflow engine check
+            target.offsetHeight; 
             target.classList.add('active');
             if(layerId === 2) setupPointerDeck();
         }
@@ -312,16 +356,12 @@
 
             if (input === 'september') {
                 errorElement.classList.add('hidden');
-                
-                // Fade and push out vault puzzle container smoothly
                 gameBox.style.opacity = '0';
                 gameBox.style.transform = 'scale(0.9) translateY(-10px)';
                 
                 setTimeout(() => {
                     gameBox.classList.add('hidden');
                     noteBox.classList.remove('hidden');
-                    
-                    // Force framework reflow sync, then float letter smoothly onto grid view
                     noteBox.offsetHeight;
                     noteBox.classList.add('reveal-active');
                 }, 400);
@@ -412,11 +452,8 @@
             }, 350);
         }
 
-        // 6. SYSTEM APPLICATION RESET (Completely Refreshes Tracking Node Vectors)
         function resetApp() {
             activeCardsCount = 5;
-            
-            // Clean out hidden states from letter reveal animations completely
             const gameBox = document.getElementById('vault-game');
             const noteBox = document.getElementById('secret-note');
             
@@ -428,7 +465,6 @@
             noteBox.classList.add('hidden');
             document.getElementById('vault-input').value = '';
             
-            // Re-inflate and position card layouts back in central grid coordinates
             document.querySelectorAll('.swipe-card').forEach(card => {
                 card.style.display = 'flex';
                 card.style.transform = 'none';
